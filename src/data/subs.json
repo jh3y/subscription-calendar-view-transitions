@@ -1,0 +1,316 @@
+{
+  "January": [
+    {
+      "product": "Amazon",
+      "amount": "20.81",
+      "totalAmount": "211.41"
+    },
+    {
+      "product": "Disney+",
+      "amount": "25.68",
+      "totalAmount": "214.50"
+    },
+    {
+      "product": "X",
+      "amount": "14.30",
+      "totalAmount": "293.30"
+    }
+  ],
+  "February": [
+    {
+      "product": "Netflix",
+      "amount": "29.22",
+      "totalAmount": "234.90"
+    },
+    {
+      "product": "Paramount+",
+      "amount": "16.15",
+      "totalAmount": "189.33"
+    },
+    {
+      "product": "Disney+",
+      "amount": "13.89",
+      "totalAmount": "110.39"
+    }
+  ],
+  "March": [
+    {
+      "product": "Netflix",
+      "amount": "21.30",
+      "totalAmount": "315.84"
+    },
+    {
+      "product": "Amazon",
+      "amount": "13.19",
+      "totalAmount": "290.49"
+    },
+    {
+      "product": "ChatGPT",
+      "amount": "13.01",
+      "totalAmount": "204.07"
+    },
+    {
+      "product": "Disney+",
+      "amount": "20.04",
+      "totalAmount": "180.01"
+    },
+    {
+      "product": "Spotify",
+      "amount": "11.97",
+      "totalAmount": "153.44"
+    },
+    {
+      "product": "X",
+      "amount": "26.50",
+      "totalAmount": "169.68"
+    }
+  ],
+  "April": [
+    {
+      "product": "Amazon",
+      "amount": "20.93",
+      "totalAmount": "216.16"
+    },
+    {
+      "product": "Paramount+",
+      "amount": "26.16",
+      "totalAmount": "190.47"
+    },
+    {
+      "product": "Disney+",
+      "amount": "19.34",
+      "totalAmount": "138.10"
+    },
+    {
+      "product": "X",
+      "amount": "29.09",
+      "totalAmount": "288.01"
+    }
+  ],
+  "May": [
+    {
+      "product": "Netflix",
+      "amount": "14.41",
+      "totalAmount": "209.37"
+    },
+    {
+      "product": "ChatGPT",
+      "amount": "10.70",
+      "totalAmount": "194.82"
+    },
+    {
+      "product": "Paramount+",
+      "amount": "15.68",
+      "totalAmount": "140.59"
+    },
+    {
+      "product": "Disney+",
+      "amount": "19.54",
+      "totalAmount": "198.45"
+    },
+    {
+      "product": "Spotify",
+      "amount": "20.40",
+      "totalAmount": "277.04"
+    },
+    {
+      "product": "X",
+      "amount": "10.25",
+      "totalAmount": "278.14"
+    }
+  ],
+  "June": [
+    {
+      "product": "Amazon",
+      "amount": "24.70",
+      "totalAmount": "161.28"
+    },
+    {
+      "product": "ChatGPT",
+      "amount": "25.79",
+      "totalAmount": "273.55"
+    },
+    {
+      "product": "Paramount+",
+      "amount": "19.75",
+      "totalAmount": "325.61"
+    },
+    {
+      "product": "Disney+",
+      "amount": "15.47",
+      "totalAmount": "139.03"
+    },
+    {
+      "product": "Spotify",
+      "amount": "26.58",
+      "totalAmount": "287.75"
+    }
+  ],
+  "July": [
+    {
+      "product": "Netflix",
+      "amount": "19.43",
+      "totalAmount": "147.76"
+    },
+    {
+      "product": "ChatGPT",
+      "amount": "12.59",
+      "totalAmount": "234.78"
+    },
+    {
+      "product": "Paramount+",
+      "amount": "24.85",
+      "totalAmount": "297.69"
+    },
+    {
+      "product": "Disney+",
+      "amount": "28.95",
+      "totalAmount": "259.79"
+    },
+    {
+      "product": "Spotify",
+      "amount": "13.85",
+      "totalAmount": "320.20"
+    }
+  ],
+  "August": [
+    {
+      "product": "ChatGPT",
+      "amount": "27.52",
+      "totalAmount": "145.52"
+    },
+    {
+      "product": "Paramount+",
+      "amount": "19.56",
+      "totalAmount": "199.47"
+    },
+    {
+      "product": "Disney+",
+      "amount": "21.11",
+      "totalAmount": "224.85"
+    },
+    {
+      "product": "X",
+      "amount": "17.53",
+      "totalAmount": "206.24"
+    }
+  ],
+  "September": [
+    {
+      "product": "Netflix",
+      "amount": "12.06",
+      "totalAmount": "298.97"
+    },
+    {
+      "product": "Amazon",
+      "amount": "12.59",
+      "totalAmount": "141.99"
+    },
+    {
+      "product": "ChatGPT",
+      "amount": "20.80",
+      "totalAmount": "262.04"
+    },
+    {
+      "product": "Paramount+",
+      "amount": "18.63",
+      "totalAmount": "115.21"
+    },
+    {
+      "product": "Disney+",
+      "amount": "25.82",
+      "totalAmount": "185.47"
+    }
+  ],
+  "October": [
+    {
+      "product": "Netflix",
+      "amount": "25.04",
+      "totalAmount": "173.16"
+    },
+    {
+      "product": "Amazon",
+      "amount": "10.70",
+      "totalAmount": "251.76"
+    },
+    {
+      "product": "ChatGPT",
+      "amount": "17.13",
+      "totalAmount": "199.70"
+    },
+    {
+      "product": "Disney+",
+      "amount": "22.14",
+      "totalAmount": "210.71"
+    },
+    {
+      "product": "X",
+      "amount": "16.86",
+      "totalAmount": "151.73"
+    }
+  ],
+  "November": [
+    {
+      "product": "Netflix",
+      "amount": "21.37",
+      "totalAmount": "151.34"
+    },
+    {
+      "product": "Amazon",
+      "amount": "14.56",
+      "totalAmount": "282.10"
+    },
+    {
+      "product": "Paramount+",
+      "amount": "11.87",
+      "totalAmount": "234.24"
+    },
+    {
+      "product": "Disney+",
+      "amount": "18.46",
+      "totalAmount": "186.73"
+    },
+    {
+      "product": "Spotify",
+      "amount": "21.04",
+      "totalAmount": "245.54"
+    },
+    {
+      "product": "X",
+      "amount": "14.58",
+      "totalAmount": "162.56"
+    }
+  ],
+  "December": [
+    {
+      "product": "Netflix",
+      "amount": "16.66",
+      "totalAmount": "235.58"
+    },
+    {
+      "product": "Amazon",
+      "amount": "18.91",
+      "totalAmount": "272.46"
+    },
+    {
+      "product": "Paramount+",
+      "amount": "26.38",
+      "totalAmount": "272.61"
+    },
+    {
+      "product": "Disney+",
+      "amount": "23.06",
+      "totalAmount": "176.52"
+    },
+    {
+      "product": "Spotify",
+      "amount": "21.32",
+      "totalAmount": "298.42"
+    },
+    {
+      "product": "X",
+      "amount": "11.12",
+      "totalAmount": "217.38"
+    }
+  ]
+}

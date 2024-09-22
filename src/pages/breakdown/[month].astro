@@ -1,0 +1,153 @@
+---
+import subs from "../../data/subs.json";
+import { getCompleteCalendar, getRandomDateInMonth, months } from "../../utils/utils";
+import type { Month } from "../../utils/types";
+import Icon from "../../components/icon.astro";
+import "../../styles/main.css";
+
+export function getStaticPaths() {
+  return Object.keys(subs).map((month, index) => {
+    const year = new Date().getFullYear();
+    const calendar = getCompleteCalendar(year, index);
+    return {
+      params: {
+        month: month.toLowerCase(),
+      },
+      props: {
+        year,
+        calendar,
+        total: subs[month as Month].reduce(
+          (acc, current) => acc + parseInt(current.amount, 10),
+          0,
+        ),
+        subs: subs[month as Month].map((sub: any) => ({
+          ...sub,
+          date: getRandomDateInMonth(year, index).getDate(),
+        })),
+      },
+    };
+  });
+}
+
+const { month } = Astro.params;
+const props = Astro.props;
+
+const weeks = [];
+
+for (let i = 0; i < props.calendar.length; i += 7) {
+  weeks.push(props.calendar.slice(i, i + 7));
+}
+let acc = 0;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no"/>
+    <meta name="theme-color" content="#CC0088"/>
+    <meta property="og:site_name" content="Subscription Calendar View Transitions" />
+    <meta property="og:title" content="Subscription Calendar View Transitions" />
+    <meta name="author" content="Jhey Tompkins" />
+    <meta name="image" content="https://jhey.dev/og?title=subscription%20calendar%20View%20transitions&gradient=8" />
+    <meta name="image" property="og:image" content="https://jhey.dev/og?title=subscription%20calendar%20View%20transitions&gradient=8" />
+    <meta name="og:image" content="https://jhey.dev/og?title=subscription%20calendar%20View%20transitions&gradient=8" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://subscription-calendar-view-transitions.vercel.app" />
+    <meta name="twitter:title" content="Subscription Calendar View Transitions" />
+    <meta name="twitter:image" content="https://jhey.dev/og?title=subscription%20calendar%20View%20transitions&gradient=8" />
+    <meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@jh3yy"/ >
+
+    <title>
+      Subscription Breakdown - {
+        `${month.charAt(0).toUpperCase()}${month.slice(1)} '${props.year.toString().substring(2)}`
+      }
+    </title>
+  </head>
+  <body>
+    <a
+      class="bear-link"
+      href="https://twitter.com/intent/follow?screen_name=jh3yy"
+      target="_blank"
+      rel="noreferrer noopener"
+    >
+      <svg
+        class="w-9"
+        viewBox="0 0 969 955"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="161.191"
+          cy="320.191"
+          r="133.191"
+          stroke="currentColor"
+          stroke-width="20"></circle>
+        <circle
+          cx="806.809"
+          cy="320.191"
+          r="133.191"
+          stroke="currentColor"
+          stroke-width="20"></circle>
+        <circle cx="695.019" cy="587.733" r="31.4016" fill="currentColor"
+        ></circle>
+        <circle cx="272.981" cy="587.733" r="31.4016" fill="currentColor"
+        ></circle>
+        <path
+          d="M564.388 712.083C564.388 743.994 526.035 779.911 483.372 779.911C440.709 779.911 402.356 743.994 402.356 712.083C402.356 680.173 440.709 664.353 483.372 664.353C526.035 664.353 564.388 680.173 564.388 712.083Z"
+          fill="currentColor"></path>
+        <rect
+          x="310.42"
+          y="448.31"
+          width="343.468"
+          height="51.4986"
+          fill="#FF1E1E"></rect>
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M745.643 288.24C815.368 344.185 854.539 432.623 854.539 511.741H614.938V454.652C614.938 433.113 597.477 415.652 575.938 415.652H388.37C366.831 415.652 349.37 433.113 349.37 454.652V511.741L110.949 511.741C110.949 432.623 150.12 344.185 219.845 288.24C289.57 232.295 384.138 200.865 482.744 200.865C581.35 200.865 675.918 232.295 745.643 288.24Z"
+          fill="currentColor"></path>
+      </svg>
+    </a>
+    <div class="w-[clamp(400px,50vmin,600px)] aspect-square rounded-full grid place-items-center relative">
+      <svg class="w-full overflow-visible aspect-square absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background circle (full donut) -->
+        {props.subs.map((sub, index) => {
+          const start = acc
+          const share = Math.floor((parseFloat(sub.amount) / props.total) * 100)
+          acc += share
+          return (
+            <circle cx="18" cy="18" r="15.915" style={`--start: ${((Math.floor(start) + 4) / 100) * 360}; view-transition-name: --circle-${index};`} fill="transparent" stroke="currentColor" stroke-width="5"
+              stroke-dasharray={`${share - 8}, 100`} stroke-linecap="round"/>
+          )
+        })}
+        <!-- Donut segment -->
+      </svg>
+      <a href={`/${month}`} rel="prefetch" style="view-transition-name: total;" class="grid text-center">
+        <span class="opacity-50 text-lg">Monthly Spend</span>
+        <span class="text-4xl font-bold">${props.total.toFixed(2)}</span>
+      </a>
+      {props.subs.map(sub => {
+        const start = acc
+        const share = (parseFloat(sub.amount) / props.total) * 360
+        acc += share
+        return (
+          <div class="icon" style={`--start: ${start}; view-transition-name: ${sub.product.toLowerCase().replace('+', '')}`}>
+            <Icon product={sub.product}></Icon>
+          </div>
+        )
+      })}
+    </div>
+    <nav class="text-sm fixed bottom-4 right-4"><ul class="uppercase">
+      {months.map(m => {
+        return (<li class={`${month === m.toLowerCase() ? '' : 'opacity-30'}`}><a aria-current={m.toLowerCase() === month ? 'page' : false} href={`/breakdown/${m.toLowerCase()}`}>{m.substring(0, 3)}</a></li>)
+      })}
+    </ul></nav>
+  </body>
+</html>

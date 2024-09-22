@@ -1,0 +1,265 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .icon {
+    @apply w-6 aspect-square absolute top-1/2 left-1/2;
+    transform: translate(-50%, -50%) rotate(calc(var(--start, 0) * 1deg))
+      translateX(calc(clamp(400px, 50vmin, 600px) * 0.5)) translateX(-100%)
+      rotate(calc(var(--start, 0) * -1deg));
+  }
+
+  .icon [fill="currentColor"] {
+    fill: canvas;
+  }
+
+  svg circle {
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+    stroke: color-mix(in hsl, canvasText, canvas 10%);
+    rotate: calc((var(--start, 0) + 84) * 1deg);
+  }
+
+  td {
+    transition: background 0.2s ease;
+  }
+
+  [data-pop] {
+    position-anchor: var(--anchor);
+    top: calc(anchor(bottom) + 0.25rem);
+    left: anchor(center);
+    z-index: 99999999;
+    transition-property: display, overlay, opacity, translate, filter;
+    transition-duration: 0.2s;
+    transition-behavior: allow-discrete;
+    transition-timing-function: var(--power-in);
+
+    @starting-style {
+      translate: 0 0;
+      filter: blur(0px);
+      opacity: 1;
+    }
+  }
+
+  [data-pop]:not(:popover-open) {
+    opacity: 0;
+    translate: 0 1rem;
+    filter: blur(2px);
+  }
+
+  td:hover [data-pop] {
+    translate: 0 0;
+    filter: blur(0px);
+    opacity: 1;
+  }
+
+  @starting-style {
+    td:hover [data-pop] {
+      translate: 0 1rem;
+      filter: blur(2px);
+      opacity: 0;
+    }
+  }
+
+  /* @starting-style {
+    td:hover [data-pop],
+    [data-pop] {
+      opacity: 0;
+      translate: 0 1rem;
+      filter: blur(2px);
+    }
+  } */
+}
+
+@layer base {
+  @view-transition {
+    navigation: auto;
+  }
+  :root {
+    --font-size-min: 16;
+    --font-size-max: 20;
+    --font-ratio-min: 1.2;
+    --font-ratio-max: 1.33;
+    --font-width-min: 375;
+    --font-width-max: 1500;
+    /* view-transition-name: none; */
+  }
+
+  ::view-transition-old(month),
+  ::view-transition-new(month),
+  ::view-transition-old(total),
+  ::view-transition-new(total) {
+    /* Make the total views match the height of their group */
+    height: 100%;
+    /* Set the other dimension to auto,
+       which for images means they maintain their aspect ratio */
+    width: auto;
+  }
+
+  ::view-transition-old(month) {
+    animation-name: transfer-out;
+  }
+  ::view-transition-new(month) {
+    animation-name: transfer-in;
+  }
+
+  @keyframes transfer-out {
+    75% {
+      opacity: 0;
+    }
+    to {
+      translate: 0 -100%;
+      opacity: 0;
+    }
+  }
+  @keyframes transfer-in {
+    0% {
+      translate: 0 100%;
+      opacity: 0;
+    }
+    25% {
+      opacity: 0;
+    }
+  }
+
+  :root {
+    --power-in: linear(
+      0 0%,
+      0.0014 11.11%,
+      0.0071 19.24%,
+      0.0188 26.6%,
+      0.037 33.33%,
+      0.0634 39.87%,
+      0.0978 46.07%,
+      0.1407 52.02%,
+      0.1925 57.74%,
+      0.2559 63.49%,
+      0.3295 69.07%,
+      0.4135 74.5%,
+      0.5083 79.81%,
+      0.6141 85%,
+      0.7312 90.09%,
+      1 100%
+    );
+    --power-in-out: linear(
+      0 0%,
+      0.0027 3.64%,
+      0.0106 7.29%,
+      0.0425 14.58%,
+      0.0957 21.87%,
+      0.1701 29.16%,
+      0.2477 35.19%,
+      0.3401 41.23%,
+      0.5982 55.18%,
+      0.7044 61.56%,
+      0.7987 68.28%,
+      0.875 75%,
+      0.9297 81.25%,
+      0.9687 87.5%,
+      0.9922 93.75%,
+      1 100%
+    );
+  }
+
+  ::view-transition-group(month),
+  ::view-transition-group(total) {
+    /* Clip the views as they overflow the group */
+    overflow: clip;
+  }
+
+  ::view-transition-group(root) {
+    animation-timing-function: var(--power-in-out);
+    animation-duration: 0.24s;
+  }
+
+  ::view-transition-group(total),
+  ::view-transition-group(netflix),
+  ::view-transition-group(amazon),
+  ::view-transition-group(chatgpt),
+  ::view-transition-group(paramount),
+  ::view-transition-group(disney),
+  ::view-transition-group(spotify),
+  ::view-transition-group(x) {
+    animation-duration: 0.24s;
+    animation-timing-function: var(--power-in-out);
+  }
+
+  html {
+    color-scheme: dark only;
+  }
+
+  :where(.fluid) {
+    --fluid-min: calc(
+      var(--font-size-min) * pow(var(--font-ratio-min), var(--font-level, 0))
+    );
+    --fluid-max: calc(
+      var(--font-size-max) * pow(var(--font-ratio-max), var(--font-level, 0))
+    );
+    --fluid-preferred: calc(
+      (var(--fluid-max) - var(--fluid-min)) /
+        (var(--font-width-max) - var(--font-width-min))
+    );
+    --fluid-type: clamp(
+      (var(--fluid-min) / 16) * 1rem,
+      ((var(--fluid-min) / 16) * 1rem) -
+        (((var(--fluid-preferred) * var(--font-width-min)) / 16) * 1rem) +
+        (var(--fluid-preferred) * var(--variable-unit, 100vi)),
+      (var(--fluid-max) / 16) * 1rem
+    );
+    font-size: var(--fluid-type);
+  }
+
+  *,
+  *:after,
+  *:before {
+    box-sizing: border-box;
+  }
+
+  body {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    font-family: "SF Pro Text", "SF Pro Icons", "AOS Icons", "Helvetica Neue",
+      Helvetica, Arial, sans-serif, system-ui;
+  }
+
+  body::before {
+    --size: 45px;
+    --line: color-mix(in lch, canvasText, transparent 70%);
+    content: "";
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    background:
+      linear-gradient(90deg, var(--line) 1px, transparent 1px var(--size)) 50%
+        50% / var(--size) var(--size),
+      linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% /
+        var(--size) var(--size);
+    mask: linear-gradient(-20deg, transparent 50%, white);
+    top: 0;
+    transform-style: flat;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .bear-link {
+    color: canvasText;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    width: 48px;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    opacity: 0.8;
+  }
+
+  :where(.x-link, .bear-link):is(:hover, :focus-visible) {
+    opacity: 1;
+  }
+
+  .bear-link svg {
+    width: 75%;
+  }
+}
